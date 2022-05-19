@@ -28,25 +28,28 @@ class Fetch {
 
         return new Promise((resolve, reject) => {
 
+            let request;
+
             switch (method.toLowerCase()) {
 
                 case 'get':
-                    break;
-                    default
 
+                    request = url;
+
+                break;
+                default:
+
+                    request = new Request (url, {
+                    method,
+                    body: JSON.stringify(params),
+                    headers: new Headers({
+                        'Content-Type' : 'application/json'
+                    })
+            })
 
             }
 
-            let request = new Request (url, {
-
-                method,
-                body: JSON.stringify(params),
-                headers: new Headers({
-                    'Content-Type' : 'application/json'
-                })
-            })
-
-            fetch(url).then(reponse=> {
+            fetch(url).then(response=> {
 
                 response.json().then(json => {
 
